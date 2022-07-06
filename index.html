@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Juego Ahorcado</title>
+        <!--<link rel="stylesheet" href="reset.css">-->
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    </head>
+    <body >
+        <header>
+            <img src="Imagenes/logo.png" class="logo" >
+        </header>
+        <main class="container">
+            <div class="botones_iniciales">
+                <div class="contenedor_botones_iniciales">
+                    <button type="button" display="none" class="boton" id="boton_iniciar">Iniciar Juego</button>
+                    <button type="button" display="hidden" id="boton_agregar" >Agregar nueva palabra</button>
+                </div>
+                
+            </div>
+            <div class="palabras_nuevas">
+                <textarea name="" id="textarea_nueva_palabra"  placeholder="Ingrese una palabra"></textarea>
+
+  
+                <h6 id="condicion_palabra"><img src="Imagenes/alerta.png"> Máx. 8 letras</h6>
+
+                
+                <div class="botones_palabra">
+                    <button type="button" id="boton_guardar">Guardar y empezar</button>
+                    <button type="button" id="boton_cancelar">Cancelar</button>
+                </div>
+            </div>
+            <div class="juego">
+                <div>
+                    <img src="Imagenes/ahorcado_completo.png" alt="">
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <button type="button">Nuevo Juego</button>
+                    <button type="button">Desistir</button>
+                </div>
+
+            </div>
+        </main>
+        <footer>&copy; Copyright Federico Pitton - 2022</footer>
+    </body>
+
+
+
+</html>
