@@ -152,7 +152,7 @@ button:active {
 .imagenes_ahorcado img {
     display: none;
 }
-#ahorcado_1 {
+#ahorcado1 {
     display: block;
 }
 .contenedor_letras {
