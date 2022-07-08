@@ -28,10 +28,9 @@ button  {
     border-radius: 24px;
     cursor: pointer;
 }
-
+/*----------------------------------------------------------------*/
 .botones_iniciales{   
     width: 100%;
-    display: none;
 
 }
 .contenedor_botones_iniciales {
@@ -71,7 +70,7 @@ button  {
     color: #0A3871;
 
 }
-
+/*----------------------------------------------------------------*/
 .palabras_nuevas {
     display: grid;
     grid-template-columns: 48%;
@@ -81,7 +80,7 @@ button  {
 }
 #textarea_nueva_palabra {
     margin-top: 16.5%;
-    margin-bottom: 20%; 
+    margin-bottom: 40%; 
     border: none;
     outline: none;
 
@@ -90,7 +89,6 @@ button  {
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
-    line-height: 400%;
     color: #0A3871;
 }
 #textarea_nueva_palabra::placeholder {
@@ -135,13 +133,13 @@ button  {
 button:active {
     border: none;
 }
-
+/*----------------------------------------------------------------*/
 .juego {
     display: grid;
     grid-template-columns: 48%;
     justify-content: center;
     gap: 5px;
-    /*display: none;*/
+    display: none;
 }
 .imagenes_ahorcado {
     display: flex;

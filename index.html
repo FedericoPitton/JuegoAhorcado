@@ -19,14 +19,14 @@
             <img src="Imagenes/logo.png" class="logo" >
         </header>
         <main class="container">
-            <div class="botones_iniciales">
+            <div class="botones_iniciales" id="botones_iniciales">
                 <div class="contenedor_botones_iniciales">
                     <button type="button" display="none" class="boton" id="boton_iniciar">Iniciar Juego</button>
                     <button type="button" display="hidden" id="boton_agregar" >Agregar nueva palabra</button>
                 </div>
                 
             </div>
-            <div class="palabras_nuevas">
+            <div class="palabras_nuevas" id="palabras_nuevas">
                 <textarea name="" id="textarea_nueva_palabra"  placeholder="Ingrese una palabra"></textarea>
                 <h6 id="condicion_palabra"><img src="Imagenes/alerta.png"> Máx. 8 letras</h6>
                 <div class="botones_palabra">
@@ -34,7 +34,7 @@
                     <button type="button" id="boton_cancelar">Cancelar</button>
                 </div>
             </div>
-            <div class="juego">
+            <div class="juego" id="juego">
                 <div class="imagenes_ahorcado">
                     <img id="ahorcado1" src="Imagenes/ahorcado_1.png" >
                     <img id="ahorcado2" src="Imagenes/ahorcado_2.png" >
@@ -80,7 +80,9 @@
             </div>
         </main>
         <footer>&copy; Copyright Federico Pitton - 2022</footer>
+        
     </body>
+    <script src="funcionalidades.js"></script>
 
 
 
