@@ -30,13 +30,13 @@ function modificador_display (num) {
     if  (num == 0) {
         document.getElementById("botones_iniciales").style.display = "none";
         document.getElementById("palabras_nuevas").style.display = "none";
-        document.getElementById("juego").style.display = "grid";
+        document.getElementById("juego").style.display = "flex";
     }else if (num == 1) {
         document.getElementById("botones_iniciales").style.display = "none";
-        document.getElementById("palabras_nuevas").style.display = "grid";
+        document.getElementById("palabras_nuevas").style.display = "flex";
         document.getElementById("juego").style.display = "none";
     } else if  (num == 2)  {
-        document.getElementById("botones_iniciales").style.display = "block";
+        document.getElementById("botones_iniciales").style.display = "flex";
         document.getElementById("palabras_nuevas").style.display = "none";
         document.getElementById("juego").style.display = "none"; 
     }

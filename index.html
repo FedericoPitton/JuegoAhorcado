@@ -15,7 +15,7 @@
 
     </head>
     <body >
-        <header>
+        <header class="header">
             <img src="Imagenes/logo.png" class="logo" >
         </header>
         <main class="container">
@@ -49,29 +49,33 @@
                     
 
                 </div>
-                <div class="contenedor_letras">
-                    <textarea readonly id="Letra1" cols="1" rows="1" ></textarea>
-                    <textarea readonly id="Letra2" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra3" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra4" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra5" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra6" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra7" cols="1" rows="1"></textarea>
-                    <textarea readonly id="Letra8" cols="1" rows="1"></textarea>
+                <div class="container_letras_general">
+                    <div class="contenedor_letras">
+                        <textarea readonly id="Letra1" cols="1" rows="1" >A</textarea>
+                        <textarea readonly id="Letra2" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra3" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra4" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra5" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra6" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra7" cols="1" rows="1">A</textarea>
+                        <textarea readonly id="Letra8" cols="1" rows="1">A</textarea>
+                    </div>
+                    <div class="contenedor_guiones">
+                        <img src="Imagenes/guion.png" id="guion1">
+                        <img src="Imagenes/guion.png" id="guion2">
+                        <img src="Imagenes/guion.png" id="guion3">
+                        <img src="Imagenes/guion.png" id="guion4">
+                        <img src="Imagenes/guion.png" id="guion5">
+                        <img src="Imagenes/guion.png" id="guion6">
+                        <img src="Imagenes/guion.png" id="guion7">
+                        <img src="Imagenes/guion.png" id="guion8">
+                    </div>
+                    <div>
+                        <textarea readonly id="letras_mal" rows="2">AAAAAA</textarea>
+                    </div>
+
                 </div>
-                <div class="contenedor_guiones">
-                    <img src="Imagenes/guion.png" id="guion1">
-                    <img src="Imagenes/guion.png" id="guion2">
-                    <img src="Imagenes/guion.png" id="guion3">
-                    <img src="Imagenes/guion.png" id="guion4">
-                    <img src="Imagenes/guion.png" id="guion5">
-                    <img src="Imagenes/guion.png" id="guion6">
-                    <img src="Imagenes/guion.png" id="guion7">
-                    <img src="Imagenes/guion.png" id="guion8">
-                </div>
-                <div>
-                    <textarea readonly id="letras_mal" rows="2">AAAAAA</textarea>
-                </div>
+                
                 <div class="contenedor_botones_juego">
                     <button type="button" id="boton_nuevo_juego">Nuevo Juego</button>
                     <button type="button" id="boton_desistir">Desistir</button>
