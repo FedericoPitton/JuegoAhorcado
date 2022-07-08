@@ -4,12 +4,20 @@ var boton_guardar = document.querySelector('#boton_guardar');
 var boton_cancelar = document.querySelector('#boton_cancelar');
 var boton_nuevo_juego = document.querySelector('#boton_nuevo_juego');   
 var boton_desistir = document.querySelector('#boton_desistir');
+var boton_jugar_nuevamente = document.querySelector('#boton_jugar_nuevamente');
 const palabras_guardadas =  ["HOLA","AMIGO","PERRO","PELOTA"];
 var palabra_adivinar = "";
 var intentos = 1;
 var letras_mal = "";
+var letras_bien=0;
 
 
+boton_jugar_nuevamente.addEventListener('click', function(e) {
+    letras_bien=0;
+    iniciar_palabras();
+    modificador_display(2);
+    
+});
 
 boton_iniciar.addEventListener('click', function(e) {
     iniciar_palabras();
@@ -55,16 +63,21 @@ boton_desistir.addEventListener('click', function(e) {
 function modificador_display (num) {
     if  (num == 0) {
         document.getElementById("botones_iniciales").style.display = "none";
+        document.getElementById("ganaste_perdiste").style.display = "none";
         document.getElementById("palabras_nuevas").style.display = "none";
         document.getElementById("juego").style.display = "flex";
     }else if (num == 1) {
         document.getElementById("botones_iniciales").style.display = "none";
+        document.getElementById("ganaste_perdiste").style.display = "none";
         document.getElementById("palabras_nuevas").style.display = "flex";
         document.getElementById("juego").style.display = "none";
     } else if  (num == 2)  {
         document.getElementById("botones_iniciales").style.display = "flex";
+        document.getElementById("ganaste_perdiste").style.display = "none";
         document.getElementById("palabras_nuevas").style.display = "none";
-        document.getElementById("juego").style.display = "none"; 
+        document.getElementById("juego").style.display = "none";
+        document.getElementById("perder").style.display = "none";
+        document.getElementById("trofeo").style.display = "none"; 
     }
 }
 
@@ -105,6 +118,7 @@ function iniciar_palabras() {
     palabra_adivinar=palabra_random();
     mostrar_guiones_letras();
     detectar_letra_ingresada();
+    ganar_perder();
     ocultar_letras();
     reiniciar_ahorcado();
     
@@ -119,11 +133,10 @@ function ocultar_letras() {
 }
 
 function mostrar_letras (letra) {
-
     for (var i = 1; i <= palabra_adivinar.length ; i++) {
         if (palabra_adivinar[i-1] == letra) {
-        document.getElementById("Letra"+[i]).value = letra
-    }
+            document.getElementById("Letra"+[i]).value = letra;
+        }
     }
 }
 
@@ -132,16 +145,16 @@ function detectar_letra_ingresada() {
         var letra = e.key.toUpperCase();
         if (palabra_adivinar.includes(letra)) {
             mostrar_letras(letra);
-        } else {
-            if (!letras_mal.includes(letra)) {
+            ganar_perder();
+        } else if (!letras_mal.includes(letra)) {
             intentos +=1;
             mostrar_ahorcado();
             letras_mal = letras_mal+"  "+letra;
             document.getElementById("letras_mal").value = letras_mal;}
-            console.log(intentos);
-        }
-    })
-}
+            ganar_perder();
+        })
+    }
+
 function reiniciar_ahorcado() {
     document.getElementById("ahorcado1").style.display = "block";
     for (var i = 2; i <=10; i++) {
@@ -150,12 +163,38 @@ function reiniciar_ahorcado() {
 }
 
 function mostrar_ahorcado() {
-    console.log("hola");
     for (var i = 1; i <=10 ; i++) {  
         if  (i != intentos) {
             document.getElementById("ahorcado"+[i]).style.display = "none";
-            console.log("ahorcado"+[i]);
         } else   {document.getElementById("ahorcado"+[i]).style.display = "block";}
+    }
+}
+
+function ganar_perder() {
+    if (intentos==10) {
+        document.getElementById("ganaste_perdiste").style.display = "flex";
+        document.getElementById("perder").style.display = "block";
+        document.getElementById("ganaste_perdiste_label").innerHTML= "Perdiste";
+        letras_bien = 0;
+    } else if (validar_ganar()) {
+        document.getElementById("ganaste_perdiste").style.display = "flex";
+        document.getElementById("trofeo").style.display = "block";
+        document.getElementById("ganaste_perdiste_label").innerHTML= "Ganaste";
+    }
+}
+
+function validar_ganar() {
+    var palabra = ""
+
+    for(var i = 1; i <= palabra_adivinar.length ; i++) {
+        var letra =""
+        letra = document.getElementById("Letra"+[i]).value
+        palabra = palabra+letra;
+        
+    }
+
+    if  (palabra==palabra_adivinar) {
+        return true
     }
 
 }

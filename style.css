@@ -263,6 +263,49 @@ button:active {
     color: #0A3871;
 
 }
+
+.ganaste_perdiste {
+    opacity: 0.9;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    gap: 2%;
+    width: 50%;
+    min-height: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+#ganaste_perdiste_label {
+    border-radius: 24px;    
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 19px;
+    text-align: center;
+    color: #0A3871;
+}
+#boton_jugar_nuevamente {
+    width: 80%;
+    height: 15%;
+    background: #0A3871;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+}
+#trofeo, #perder {
+    display: none;
+    max-width: 70%;
+    max-height: 70%
+}
 /*----------------------------------------------------------------*/
 footer {
     position: absolute;
