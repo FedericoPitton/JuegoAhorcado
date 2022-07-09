@@ -316,3 +316,85 @@ footer {
     justify-content: center;
     justify-items: center;
 }
+@media screen and (max-width: 768px) {
+    .contenedor_botones_iniciales {
+        width: 60%;
+    }
+    #boton_iniciar {
+        min-height: 15%;
+    }
+    #boton_agregar {
+        min-height: 10%;
+    }
+    #textarea_nueva_palabra, #condicion_palabra, .botones_palabra {
+        width: 90%;
+    }
+    #textarea_nueva_palabra {
+        min-height: 80%;
+    }
+    .contenedor_letras, .contenedor_guiones {
+        width: 75%;
+    }
+    .contenedor_botones_juego {
+        width: 95%;
+    }
+    .ganaste_perdiste {
+        width: 100%;
+    }
+    #ganaste_perdiste_label, #boton_jugar_nuevamente {
+        font-size: 36px;
+    }
+
+
+}
+@media screen and (max-width: 375px) {
+    .contenedor_botones_iniciales {
+        width: 100%;
+    }
+    #textarea_nueva_palabra, #condicion_palabra, .botones_palabra {
+        width: 90%;
+    }
+    #textarea_nueva_palabra {
+        font-size: 20px;
+    }
+    .botones_palabra, .contenedor_botones_juego {
+        flex-direction: column;
+    }
+   
+    .botones_palabra button {
+        width: 100%;
+    }
+    .container_letras_general {
+        min-height: 20%;
+    }
+    .contenedor_botones_juego {
+        width: 95%;
+        min-height: 30%;
+        justify-content: space-around;
+ 
+     }
+    .contenedor_botones_juego button {
+        width: 100%;
+    }
+    .contenedor_letras {
+        font-size: 7px;
+        justify-content: space-around;
+    }
+    .contenedor_guiones {
+        gap:7%
+
+    }
+
+    #letras_mal {
+        width: 100%;
+        font-size: 9px ;
+    }
+    .ganaste_perdiste {
+        width: 100%;
+    }
+    #ganaste_perdiste_label, #boton_jugar_nuevamente {
+        font-size: 16px;
+    }
+
+
+}
