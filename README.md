@@ -1,4 +1,4 @@
-# JuegoAhorcado
+# Juego del ahorcado propuesto por Alura - Oracle One como segundo Challenge
 
 ¡Bienvenidos y Bienvenidas a nuestro segundo desafío! 
 
