@@ -235,6 +235,22 @@ button:active {
     color: #495057;
     
 }
+#ingresar_letras {
+    display: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    outline: none;
+    border-radius: 24px;
+    border-color: #0A3871;
+    border-width: 2px;
+
+
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 150%;
+    color: #0A3871;
+}
 .contenedor_botones_juego {
     margin-top: 1%;
     width: 48%;
@@ -335,6 +351,11 @@ footer {
     .contenedor_letras, .contenedor_guiones {
         width: 75%;
     }
+    #ingresar_letras {
+        display: flex;
+        font-size: 24px;
+        width: 100%;
+    }
     .contenedor_botones_juego {
         width: 95%;
     }
@@ -347,7 +368,7 @@ footer {
 
 
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 450px) {
     .contenedor_botones_iniciales {
         width: 100%;
     }
@@ -356,6 +377,7 @@ footer {
     }
     #textarea_nueva_palabra {
         font-size: 20px;
+        min-height: 60%;
     }
     .botones_palabra, .contenedor_botones_juego {
         flex-direction: column;
@@ -381,13 +403,17 @@ footer {
         justify-content: space-around;
     }
     .contenedor_guiones {
-        gap:7%
+        gap:11%
 
     }
 
     #letras_mal {
         width: 100%;
         font-size: 9px ;
+    }
+    #ingresar_letras {
+        display: flex;
+        font-size: 16px;
     }
     .ganaste_perdiste {
         width: 100%;
