@@ -11,6 +11,13 @@ var intentos = 1;
 var letras_mal = "";
 var letras_bien=0;
 
+/*Variable y funcion para detectar ancho de ventana y
+activar funciones responsive para celular y tablet*/
+var anchoVentana = window.innerWidth;
+window.onresize = function () {
+    anchoVentana = window.innerWidth;
+}
+
 
 boton_jugar_nuevamente.addEventListener('click', function(e) {
     letras_bien=0;
@@ -81,6 +88,14 @@ function modificador_display (num) {
     }
 }
 
+function responsive_769px() {
+    if  (anchoVentana<769) {
+        document.getElementById("ingresar_letras").style.display = "flex";
+    } else  {
+        document.getElementById("ingresar_letras").style.display = "none";
+    }
+
+}
 function validar_palabras(palabra) {
     if (palabra.length == 0) {
         alert("Debe ingresar una palabra");
@@ -120,6 +135,7 @@ function iniciar_palabras() {
     detectar_letra_ingresada();
     ganar_perder();
     ocultar_letras();
+    document.getElementById("ingresar_letras").value ="";
     reiniciar_ahorcado();
     
 }
@@ -143,6 +159,7 @@ function mostrar_letras (letra) {
 function detectar_letra_ingresada() {
     document.addEventListener("keydown", function(e) {
         var letra = e.key.toUpperCase();
+        document.getElementById("ingresar_letras").value ="";
         if (palabra_adivinar.includes(letra)) {
             mostrar_letras(letra);
             ganar_perder();
