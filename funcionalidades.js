@@ -17,11 +17,6 @@ activar funciones responsive para celular y tablet*/
 var anchoVentana = window.innerWidth;
 window.onresize = function () {
     anchoVentana = window.innerWidth;
-    if (responsive_769px()) {
-        iniciar_palabras_769px();
-        } else {
-            iniciar_palabras();
-        }
 }
 /*---------------------------------BOTONES---------------------------------*/
 
