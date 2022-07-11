@@ -5,6 +5,7 @@ var boton_cancelar = document.querySelector('#boton_cancelar');
 var boton_nuevo_juego = document.querySelector('#boton_nuevo_juego');   
 var boton_desistir = document.querySelector('#boton_desistir');
 var boton_jugar_nuevamente = document.querySelector('#boton_jugar_nuevamente');
+
 const palabras_guardadas =  ["HOLA","AMIGO","PERRO","PELOTA"];
 var palabra_adivinar = "";
 var intentos = 1;
@@ -16,18 +17,31 @@ activar funciones responsive para celular y tablet*/
 var anchoVentana = window.innerWidth;
 window.onresize = function () {
     anchoVentana = window.innerWidth;
+    if (responsive_769px()) {
+        iniciar_palabras_769px();
+        } else {
+            iniciar_palabras();
+        }
 }
-
+/*---------------------------------BOTONES---------------------------------*/
 
 boton_jugar_nuevamente.addEventListener('click', function(e) {
     letras_bien=0;
-    iniciar_palabras();
+    if (responsive_769px()) {
+        iniciar_palabras_769px();
+        } else {
+            iniciar_palabras();
+        }
     modificador_display(2);
     
 });
 
 boton_iniciar.addEventListener('click', function(e) {
-    iniciar_palabras();
+    if (responsive_769px()) {
+        iniciar_palabras_769px();
+        } else {
+            iniciar_palabras();
+        }
     modificador_display(0);
     
 });
@@ -42,7 +56,11 @@ boton_guardar.addEventListener('click', function(e) {
     if (validar_palabras(palabra)) {
         palabras_guardadas.push(palabra.toUpperCase());
         document.getElementById('textarea_nueva_palabra').value = "";
-        iniciar_palabras();
+        if (responsive_769px()) {
+            iniciar_palabras_769px();
+            } else {
+                iniciar_palabras();
+            }
         modificador_display(0);
     }
     
@@ -55,8 +73,11 @@ boton_cancelar.addEventListener('click', function(e) {
 });
 
 boton_nuevo_juego.addEventListener('click', function(e) {
-
-    iniciar_palabras();
+    if (responsive_769px()) {
+        iniciar_palabras_769px();
+        } else {
+            iniciar_palabras();
+        }
 
     modificador_display(0);
 });
@@ -65,7 +86,7 @@ boton_desistir.addEventListener('click', function(e) {
     modificador_display(2);
 });
 
-
+/*---------------------------------FUNCIONES---------------------------------*/
 
 function modificador_display (num) {
     if  (num == 0) {
@@ -91,8 +112,10 @@ function modificador_display (num) {
 function responsive_769px() {
     if  (anchoVentana<769) {
         document.getElementById("ingresar_letras").style.display = "flex";
+        return true;
     } else  {
         document.getElementById("ingresar_letras").style.display = "none";
+        return false;
     }
 
 }
@@ -108,6 +131,11 @@ function validar_palabras(palabra) {
     }
 }
 
+/**
+ * Funcion para sortear un numero alteatorio y 
+ * obtener un indice de las palabras almacenadas
+ * @returns una palabra almacenada para ser adivinada
+ */
 function palabra_random () {
     var min = 0;
     var max = palabras_guardadas.length-1;
@@ -116,6 +144,10 @@ function palabra_random () {
     return palabras_guardadas[x]
 }
 
+/**
+ * Funcion para mostrar la cantidad de guiones correspondientes
+ * al largo de la palabra
+ */
 function mostrar_guiones_letras() {
     for (var i = 1; i <= 8; i++) {
         document.getElementById("guion"+[i]).style.display = "block";
@@ -128,26 +160,35 @@ function mostrar_guiones_letras() {
 
 }
 
+/**
+ * Funcion para iniciar el juego en su totalidad llamando
+ * a las diferentes funciones que lo componen
+ */
 function iniciar_palabras() {
     intentos=1;
     palabra_adivinar=palabra_random();
     mostrar_guiones_letras();
     detectar_letra_ingresada();
     ganar_perder();
-    ocultar_letras();
-    document.getElementById("ingresar_letras").value ="";
     reiniciar_ahorcado();
-    
 }
 
-function ocultar_letras() {
-    for (var i = 1; i <= palabra_adivinar.length ; i++) {
-        document.getElementById("Letra"+[i]).value = "";
-    }
-    document.getElementById("letras_mal").value ="";
-    letras_mal="";
+function iniciar_palabras_769px() {
+    intentos=1;
+    palabra_adivinar=palabra_random();
+    mostrar_guiones_letras();
+    detectar_letra_769px();
+    ganar_perder();
+    reiniciar_ahorcado();
 }
 
+
+
+/**
+ * Funcion que recibe una letra y la mostrara en el lugar
+ * correspondiente de los espacios textarea
+ * @param {*} letra 
+ */
 function mostrar_letras (letra) {
     for (var i = 1; i <= palabra_adivinar.length ; i++) {
         if (palabra_adivinar[i-1] == letra) {
@@ -155,7 +196,10 @@ function mostrar_letras (letra) {
         }
     }
 }
-
+/**
+ * Funcion para detectar eventos del teclado y ver si la letra
+ * esta o no en la palabra_adivinar
+ */
 function detectar_letra_ingresada() {
     document.addEventListener("keydown", function(e) {
         var letra = e.key.toUpperCase();
@@ -172,13 +216,49 @@ function detectar_letra_ingresada() {
         })
     }
 
+function detectar_letra_769px() {
+    var txt_ingresar_letras = document.getElementById("ingresar_letras");
+    txt_ingresar_letras.addEventListener('input', () => {
+        let input = txt_ingresar_letras.value;
+        if ( input.length <=1 ) {
+            var letra =  txt_ingresar_letras.value.toUpperCase();
+            if (palabra_adivinar.includes(letra)) {
+                mostrar_letras(letra);
+                ganar_perder();
+            } else if (!letras_mal.includes(letra)) {
+                intentos +=1;
+                mostrar_ahorcado();
+                letras_mal = letras_mal+"  "+letra;
+                document.getElementById("letras_mal").value = letras_mal;
+                ganar_perder();
+            }
+            setTimeout(() => {
+                txt_ingresar_letras.value = input.slice( 0, -1 );
+            }, 100)
+        }
+    });   
+}
+/**
+ * Funcion para reiniciar imagenes del ahorcado a 1 de las 10
+ * y reiniciar letras a null
+ */
 function reiniciar_ahorcado() {
+    document.getElementById("ingresar_letras").value ="";
+
     document.getElementById("ahorcado1").style.display = "block";
     for (var i = 2; i <=10; i++) {
         document.getElementById("ahorcado"+[i]).style.display = "none";
     }
-}
 
+    for (var i = 1; i <= palabra_adivinar.length ; i++) {
+        document.getElementById("Letra"+[i]).value = "";
+    }
+    document.getElementById("letras_mal").value ="";
+    letras_mal="";
+}
+/**
+ * Funcion para mostrar ahorcado correspondiente a los intentos realizados
+ */
 function mostrar_ahorcado() {
     for (var i = 1; i <=10 ; i++) {  
         if  (i != intentos) {
@@ -187,11 +267,15 @@ function mostrar_ahorcado() {
     }
 }
 
+/**
+ * Funcion para verificar si se gana o se pierde y mostrar
+ * resultado correspondiente
+ */
 function ganar_perder() {
     if (intentos==10) {
         document.getElementById("ganaste_perdiste").style.display = "flex";
         document.getElementById("perder").style.display = "block";
-        document.getElementById("ganaste_perdiste_label").innerHTML= "Perdiste";
+        document.getElementById("ganaste_perdiste_label").innerHTML= "La palabra era "+palabra_adivinar;
         letras_bien = 0;
     } else if (validar_ganar()) {
         document.getElementById("ganaste_perdiste").style.display = "flex";
@@ -200,6 +284,10 @@ function ganar_perder() {
     }
 }
 
+/**
+ * Funcion para validar si se gano o aun no
+ * @returns true si se gano
+ */
 function validar_ganar() {
     var palabra = ""
 
@@ -215,3 +303,4 @@ function validar_ganar() {
     }
 
 }
+
