@@ -350,6 +350,10 @@ footer {
     }
     .contenedor_letras, .contenedor_guiones {
         width: 75%;
+        justify-content: space-around;
+    }
+    .contenedor_letras textarea {
+        width: 9.5%;
     }
     #ingresar_letras {
         display: flex;
@@ -402,8 +406,11 @@ footer {
         font-size: 7px;
         justify-content: space-around;
     }
+    .contenedor_letras textarea {
+        width: 9.5%;
+    }
     .contenedor_guiones {
-        gap:11%
+        justify-content: space-around;
 
     }
 
