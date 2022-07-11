@@ -47,13 +47,21 @@ boton_agregar.addEventListener('click', function(e) {
 boton_guardar.addEventListener('click', function(e) {
     var palabra = document.getElementById('textarea_nueva_palabra').value;
     if (validar_palabras(palabra)) {
-        palabras_guardadas.push(palabra.toUpperCase());
-        document.getElementById('textarea_nueva_palabra').value = "";
-        iniciar_palabras_769px();
+        var validado = true;
+        for (var i = 0; i < palabra.length; i++) {
+            if (!validar_letras(palabra[i].toUpperCase())) validado = false;
+        }
+        if (validado) {
+            palabras_guardadas.push(palabra.toUpperCase());
+            document.getElementById('textarea_nueva_palabra').value = "";
+            iniciar_palabras_769px();
+            modificador_display(0);
+        }
     if (!responsive_769px()) {
         iniciar_palabras ()
-        } 
         modificador_display(0);
+        } 
+        
     }
     
 });
