@@ -47,13 +47,21 @@ boton_agregar.addEventListener('click', function(e) {
 boton_guardar.addEventListener('click', function(e) {
     var palabra = document.getElementById('textarea_nueva_palabra').value;
     if (validar_palabras(palabra)) {
-        palabras_guardadas.push(palabra.toUpperCase());
-        document.getElementById('textarea_nueva_palabra').value = "";
-        iniciar_palabras_769px();
+        var validado = true;
+        for (var i = 0; i < palabra.length; i++) {
+            if (!validar_letras(palabra[i].toUpperCase())) validado = false;
+        }
+        if (validado) {
+            palabras_guardadas.push(palabra.toUpperCase());
+            document.getElementById('textarea_nueva_palabra').value = "";
+            iniciar_palabras_769px();
+            modificador_display(0);
+        }
     if (!responsive_769px()) {
         iniciar_palabras ()
-        } 
         modificador_display(0);
+        } 
+        
     }
     
 });
@@ -195,24 +203,7 @@ function detectar_letra_ingresada() {
     document.addEventListener("keydown", function(e) {
         var letra = e.key.toUpperCase();
         document.getElementById("ingresar_letras").value ="";
-        if (palabra_adivinar.includes(letra)) {
-            mostrar_letras(letra);
-            ganar_perder();
-        } else if (!letras_mal.includes(letra)) {
-            intentos +=1;
-            mostrar_ahorcado();
-            letras_mal = letras_mal+"  "+letra;
-            document.getElementById("letras_mal").value = letras_mal;}
-            ganar_perder();
-        })
-    }
-
-function detectar_letra_769px() {
-    var txt_ingresar_letras = document.getElementById("ingresar_letras");
-    txt_ingresar_letras.addEventListener('input', () => {
-        let input = txt_ingresar_letras.value;
-        if ( input.length <=1 ) {
-            var letra =  txt_ingresar_letras.value.toUpperCase();
+        if(validar_letras(letra)) {
             if (palabra_adivinar.includes(letra)) {
                 mostrar_letras(letra);
                 ganar_perder();
@@ -223,9 +214,32 @@ function detectar_letra_769px() {
                 document.getElementById("letras_mal").value = letras_mal;
                 ganar_perder();
             }
+        }
+    })
+    }
+
+function detectar_letra_769px() {
+    var txt_ingresar_letras = document.getElementById("ingresar_letras");
+    txt_ingresar_letras.addEventListener('input', () => {
+        let input = txt_ingresar_letras.value;
+        if ( input.length <=1 ) {
+            var letra =  txt_ingresar_letras.value.toUpperCase();
+            if  ( validar_letras(letra)) {
+                if (palabra_adivinar.includes(letra)) {
+                    mostrar_letras(letra);
+                    ganar_perder();
+                } else if (!letras_mal.includes(letra)) {
+                    intentos +=1;
+                    mostrar_ahorcado();
+                    letras_mal = letras_mal+"  "+letra;
+                    document.getElementById("letras_mal").value = letras_mal;
+                    ganar_perder();
+                }
+                
+            }
             setTimeout(() => {
                 txt_ingresar_letras.value = input.slice( 0, -1 );
-            }, 100)
+            }, 0)
         }
     });   
 }
@@ -293,5 +307,15 @@ function validar_ganar() {
         return true
     }
 
+}
+
+function validar_letras(letra) {
+    console.log(letra[0])
+    if (letra.charCodeAt(0)>=65 && letra.charCodeAt(0)<=90) {
+        return true;
+    } else  {
+        alert("Debe ingresar solo letras");
+        return false;
+    }
 }
 
