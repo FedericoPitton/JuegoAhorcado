@@ -22,21 +22,19 @@ window.onresize = function () {
 
 boton_jugar_nuevamente.addEventListener('click', function(e) {
     letras_bien=0;
-    if (responsive_769px()) {
-        iniciar_palabras_769px();
-        } else {
-            iniciar_palabras();
-        }
+    iniciar_palabras_769px();
+    if (!responsive_769px()) {
+        iniciar_palabras ()
+        } 
     modificador_display(2);
     
 });
 
 boton_iniciar.addEventListener('click', function(e) {
-    if (responsive_769px()) {
-        iniciar_palabras_769px();
-        } else {
-            iniciar_palabras();
-        }
+    iniciar_palabras_769px();
+    if (!responsive_769px()) {
+        iniciar_palabras ()
+        } 
     modificador_display(0);
     
 });
@@ -51,11 +49,10 @@ boton_guardar.addEventListener('click', function(e) {
     if (validar_palabras(palabra)) {
         palabras_guardadas.push(palabra.toUpperCase());
         document.getElementById('textarea_nueva_palabra').value = "";
-        if (responsive_769px()) {
-            iniciar_palabras_769px();
-            } else {
-                iniciar_palabras();
-            }
+        iniciar_palabras_769px();
+    if (!responsive_769px()) {
+        iniciar_palabras ()
+        } 
         modificador_display(0);
     }
     
@@ -68,11 +65,10 @@ boton_cancelar.addEventListener('click', function(e) {
 });
 
 boton_nuevo_juego.addEventListener('click', function(e) {
-    if (responsive_769px()) {
-        iniciar_palabras_769px();
-        } else {
-            iniciar_palabras();
-        }
+    iniciar_palabras_769px();
+    if (!responsive_769px()) {
+        iniciar_palabras ()
+        } 
 
     modificador_display(0);
 });
