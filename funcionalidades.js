@@ -310,7 +310,6 @@ function validar_ganar() {
 }
 
 function validar_letras(letra) {
-    console.log(letra[0])
     if (letra.charCodeAt(0)>=65 && letra.charCodeAt(0)<=90) {
         return true;
     } else  {
